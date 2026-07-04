@@ -16,11 +16,11 @@ public abstract class Personagem {
 
     // Construtor que inicializa todos os atributos do personagem.
     public Personagem(String nome, String classe, int nivel, int pontosDeVida, double poderBase) {
-        this.nome = nome;
-        this.classe = classe;
-        this.nivel = nivel;
-        this.pontosDeVida = pontosDeVida;
-        this.poderBase = poderBase;
+        setNome(nome);
+        setClasse(classe);
+        setNivel(nivel);
+        setPontosDeVida(pontosDeVida);
+        setPoderBase(poderBase);
     }
 
     public String getNome() {
@@ -44,22 +44,37 @@ public abstract class Personagem {
     }
 
     public void setNome(String nome) {
+        if (nome == null || nome.isBlank()) {
+            throw new IllegalArgumentException("O nome do personagem não pode ser vazio.");
+        }
         this.nome = nome;
     }
 
     public void setClasse(String classe) {
+        if (classe == null || classe.isBlank()) {
+            throw new IllegalArgumentException("A classe do personagem não pode ser vazia.");
+        }
         this.classe = classe;
     }
 
     public void setNivel(int nivel) {
+        if (nivel < 0) {
+            throw new IllegalArgumentException("O nível não pode ser negativo.");
+        }
         this.nivel = nivel;
     }
 
     public void setPontosDeVida(int pontosDeVida) {
+        if (pontosDeVida < 0) {
+            throw new IllegalArgumentException("Os pontos de vida não podem ser negativos.");
+        }
         this.pontosDeVida = pontosDeVida;
     }
 
     public void setPoderBase(double poderBase) {
+        if (poderBase < 0) {
+            throw new IllegalArgumentException("O poder base não pode ser negativo.");
+        }
         this.poderBase = poderBase;
     }
 

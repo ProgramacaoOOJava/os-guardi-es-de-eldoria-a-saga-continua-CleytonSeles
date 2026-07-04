@@ -27,12 +27,31 @@ public class Main {
         for (Personagem personagem : personagens) {
             System.out.println(personagem.getClasse());
             System.out.println();
-            personagem.exibirStatus();
+            System.out.println(personagem);
             personagem.usarHabilidade();
+
+            // Identifica dinamicamente o tipo real do personagem.
+            if (personagem instanceof Mago) {
+                System.out.println("O personagem " + personagem.getNome() + " é um Mago de nível " + personagem.getNivel() + ".");
+            } else if (personagem instanceof Guerreiro) {
+                System.out.println("O personagem " + personagem.getNome() + " é um Guerreiro de nível " + personagem.getNivel() + ".");
+            }
+
             System.out.println();
         }
+
+        // Compara dois personagens usando equals().
+        Personagem primeiroPersonagem = personagens.get(0);
+        Personagem segundoPersonagem = personagens.get(2);
+        String resultadoComparacao;
+
+        if (primeiroPersonagem.equals(segundoPersonagem)) {
+            resultadoComparacao = "iguais";
+        } else {
+            resultadoComparacao = "diferentes";
+        }
+
+        System.out.println("Comparando, " + primeiroPersonagem.getNome() + " e "
+                + segundoPersonagem.getNome() + " são " + resultadoComparacao + ".");
     }
 }
-
-
-
