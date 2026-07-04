@@ -86,6 +86,14 @@ public abstract class Personagem {
         System.out.println(toString());
     }
 
+    // Aumenta o poder base do personagem após uma bênção.
+    protected void atribuirBencao(double valor) {
+        if (valor < 0) {
+            throw new IllegalArgumentException("O valor da bênção não pode ser negativo.");
+        }
+        setPoderBase(getPoderBase() + valor);
+    }
+
     @Override
     public String toString() {
         return "Nome: " + nome + "\n"

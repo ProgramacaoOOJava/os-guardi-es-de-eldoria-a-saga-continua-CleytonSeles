@@ -24,19 +24,26 @@ public class Main {
         personagens.add(new Guerreiro("Brienne", 5, 88, 12.5));
 
         // Percorrendo a lista e demonstrando polimorfismo
-        for (Personagem personagem : personagens) {
-            System.out.println(personagem.getClasse());
+        for (int indice = 0; indice < personagens.size(); indice++) {
+            Personagem personagem = personagens.get(indice);
+
+            System.out.println("--- Herói " + (indice + 1) + " ---");
             System.out.println();
-            System.out.println(personagem);
+            personagem.exibirStatus();
             personagem.usarHabilidade();
 
-            // Identifica dinamicamente o tipo real do personagem.
+            // Apenas magos registram e auditam ações.
             if (personagem instanceof Mago) {
-                System.out.println("O personagem " + personagem.getNome() + " é um Mago de nível " + personagem.getNivel() + ".");
-            } else if (personagem instanceof Guerreiro) {
-                System.out.println("O personagem " + personagem.getNome() + " é um Guerreiro de nível " + personagem.getNivel() + ".");
+                Auditavel personagemAuditavel = (Auditavel) personagem;
+                personagemAuditavel.registrarAcao("Conjurou bola de fogo");
+                personagemAuditavel.auditarAcoes();
             }
 
+            // Casting explícito para usar o método protegido de Personagem.
+            Personagem personagemAbenocoado = (Personagem) personagem;
+            personagemAbenocoado.atribuirBencao(2.0);
+            System.out.println("Novo poder base após bênção: " + personagemAbenocoado.getPoderBase());
+            personagemAbenocoado.exibirStatus();
             System.out.println();
         }
 
